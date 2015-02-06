@@ -7,6 +7,10 @@
     "type": "git",
     "url": "https://github.com/lewisnyman/drupalcore-frontend-toolkit"
   },
+  "scripts": {
+    "test": "./node_modules/.bin/gulp csslint",
+    "start": "./node_modules/.bin/gulp watch"
+  },
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-csslint": "^0.1.5",
