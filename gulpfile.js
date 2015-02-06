@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var csslint = require('gulp-csslint');
 var htmlReporter = require('gulp-csslint-report');
 var livereload = require('gulp-livereload');
+var deploy = require('gulp-gh-pages');
 
 // Config
 var cssfiles = ['../core/modules/**/*.css', '../core/themes/**/*.css', '/../core/misc/**/*.css'];
