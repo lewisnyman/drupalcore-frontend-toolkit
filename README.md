@@ -24,5 +24,5 @@ Lint all the CSS files in Drupal core, uses the rules defined in Drupal's .cssli
 gulp watch
 ```
 
-Livereload CSS files when working on core. Requires the (LiveReload Google Chrome Extension)[https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en].
+Livereload CSS files when working on core. Requires the [LiveReload Google Chrome Extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en).
 
