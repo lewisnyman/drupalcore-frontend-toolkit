@@ -3,7 +3,7 @@
 
 1. Clone this repository into your local Drupal repository
 2. Change directory into your newly cloned repo
-3. Install dependancies
+3. Install dependencies
 
 ```
 git clone https://github.com/lewisnyman/drupalcore-frontend-toolkit.git
