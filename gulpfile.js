@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var csslint = require('gulp-csslint');
+var htmlReporter = require('gulp-csslint-report');
 var livereload = require('gulp-livereload');
 
 // Config
@@ -22,4 +23,24 @@ gulp.task('reloadcss', function(vinyl) {
 });
 
 gulp.task('default', function () {
+});
+
+/**
+ * Build an HTML report.
+ */
+gulp.task('report', function() {
+  gulp.src(cssfiles)
+  .pipe(csslint('../.csslintrc'))
+  .pipe(htmlReporter({
+    filename: 'index.html',
+    directory: './build/'
+  }));
+});
+
+/**
+ * Deploy the built report to GitHub Pages.
+ */
+gulp.task('deploy', ['report'], function() {
+  return gulp.src('./build/**/*')
+  .pipe(deploy());
 });
