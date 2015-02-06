@@ -1,0 +1,13 @@
+{
+  "name": "drupalcore-frontend-toolkit",
+  "version": "0.0.1",
+  "description": "A frontend toolkit for working with Drupal core",
+  "author": "Lewis Nyman <hello@lewisnyman.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lewisnyman/drupalcore-frontend-toolkit"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  }
+}
