@@ -27,7 +27,7 @@ gulp.task('default', function () {
 });
 
 /**
- * Build an HTML report.
+ * Build an HTML report in the `build` directory.
  */
 gulp.task('report', function() {
   gulp.src(cssfiles)
@@ -39,9 +39,8 @@ gulp.task('report', function() {
 });
 
 /**
- * Deploy the built report to GitHub Pages.
+ * Deploy the built HTML report to GitHub Pages.
  */
-gulp.task('deploy', ['report'], function() {
-  return gulp.src('./build/**/*')
-  .pipe(deploy());
+gulp.task('deploy', function() {
+  return gulp.src('./build/**/*').pipe(deploy());
 });

@@ -9,7 +9,9 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/gulp csslint",
-    "start": "./node_modules/.bin/gulp watch"
+    "start": "./node_modules/.bin/gulp watch",
+    "report": "./node_modules/.bin/gulp report",
+    "deploy": "./node_modules/.bin/gulp deploy"
   },
   "devDependencies": {
     "gulp": "^3.8.10",
