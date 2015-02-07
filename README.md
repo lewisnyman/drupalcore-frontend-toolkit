@@ -25,3 +25,17 @@ npm start
 ```
 
 Livereload CSS files when working on core. Requires the [LiveReload Google Chrome Extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en).
+
+
+```
+npm run report
+```
+
+Build an HTML report of the CSSLint logs in the `build` directory.
+
+```
+npm run deploy
+```
+
+Will deploy the previously built CSSLint HTML report to the remote git
+repository in the `gh-pages` branch.
