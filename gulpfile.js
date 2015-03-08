@@ -8,6 +8,7 @@ var gulpconcat = require('gulp-concat');
 
 // Config
 var cssfiles = ['../core/modules/**/*.css', '../core/themes/**/*.css', '/../core/misc/**/*.css'];
+var styleguidecssfiles = [ '/../core/misc/**/*.css', '../core/modules/**/*.css', '../core/themes/seven/**/*.css'];
 
 gulp.task('csslint', function() {
   gulp.src(cssfiles)
@@ -26,12 +27,12 @@ gulp.task('reloadcss', function(vinyl) {
 });
 
 gulp.task('styleguide', function(vinyl) {
-  gulp.src(cssfiles)
+  gulp.src(styleguidecssfiles)
   .pipe(gulpkss({
         overview: '../core/themes/seven/css/styleguide.md'
     }))
     .pipe(gulp.dest('build/styleguide/'));
-  gulp.src(cssfiles)
+  gulp.src(styleguidecssfiles)
     .pipe(gulpconcat('public/style.css'))
     .pipe(gulp.dest('build/styleguide/'));
 });
