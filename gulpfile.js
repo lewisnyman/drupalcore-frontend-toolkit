@@ -3,6 +3,7 @@ var csslint = require('gulp-csslint');
 var htmlReporter = require('gulp-csslint-report');
 var livereload = require('gulp-livereload');
 var deploy = require('gulp-gh-pages');
+var gulpkss = require('gulp-kss');
 
 // Config
 var cssfiles = ['../core/modules/**/*.css', '../core/themes/**/*.css', '/../core/misc/**/*.css'];
@@ -21,6 +22,14 @@ gulp.task('watch', function() {
 gulp.task('reloadcss', function(vinyl) {
   gulp.src(cssfiles)
     .pipe(livereload());
+});
+
+gulp.task('styleguide', function(vinyl) {
+  gulp.src(cssfiles)
+  .pipe(gulpkss({
+        overview: '../core/themes/seven/css/styleguide.md'
+    }))
+    .pipe(gulp.dest('build/styleguide/'));
 });
 
 gulp.task('default', function () {
