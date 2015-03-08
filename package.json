@@ -11,7 +11,8 @@
     "test": "gulp csslint",
     "start": "gulp watch",
     "report": "gulp report",
-    "deploy": "gulp deploy"
+    "deploy": "gulp deploy",
+    "styleguide": "gulp styleguide"
   },
   "devDependencies": {
     "gulp": "^3.8.10",
