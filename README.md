@@ -37,7 +37,7 @@ Build an HTML report of the CSSLint logs in the `build` directory.
 npm run styleguide
 ```
 
-Generates an HTML styleguide, by parsing all KSS comments in core, in the `build` directory.
+Generates an HTML styleguide, by parsing all KSS comments in core, in the `build/styleguide` directory.
 
 
 ```
