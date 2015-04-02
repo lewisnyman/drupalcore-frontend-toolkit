@@ -112,24 +112,9 @@ screen and (max-width: 1020px) {
 
 /**
  * @file
- * Administration styles for the Book module.
- */
-
-/**
- * Book outline on book edit form.
- */
-.js .book-outline-form .form-submit {
-  display: none;
-}
-
-/**
- * @file
  * Styling for the Book module.
  */
 
-/**
- * Book navigation.
- */
 .book-navigation .menu {
   padding-bottom: 0;
   padding-top: 1em;
@@ -139,29 +124,29 @@ screen and (max-width: 1020px) {
   overflow: auto;
   padding: 0.5em 0;
 }
-.book-pager li {
+.book-pager__item {
   display: inline-block;
   list-style-type: none;
   vertical-align: top;
 }
-.book-pager .previous {
+.book-pager__item--previous {
   text-align: left; /* LTR */
   width: 45%;
 }
-[dir="rtl"] .book-pager .previous {
+[dir="rtl"] .book-pager__item--previous {
   float: right;
   text-align: right;
 }
-.book-pager .up {
+.book-pager__item--center {
   text-align: center;
   width: 8%;
 }
-.book-pager .next {
+.book-pager__item--next {
   float: right; /* LTR */
   text-align: right; /* LTR */
   width: 45%;
 }
-[dir="rtl"] .book-pager .next {
+[dir="rtl"] .book-pager__item--next {
   float: left;
   text-align: left;
 }
@@ -1095,10 +1080,6 @@ ul.ckeditor-buttons li.ckeditor-button-separator a {
  */
 .form-managed-file .form-submit {
   margin: 0 0.5em;
-}
-.form-managed-file .progress-disabled {
-  display: inline;
-  float: none;
 }
 .form-managed-file div.ajax-progress-bar {
   display: none;
@@ -2438,13 +2419,13 @@ a.simpletest-collapse:hover {
 }
 
 /**
- * Administration blocks.
+ * Panel.
+ * Used to visually group items together.
  */
-.admin-panel {
-  margin: 0;
-  padding: 5px 5px 15px 5px;
+.panel {
+  padding: 5px 5px 15px;
 }
-.admin-panel .description {
+.panel__description {
   margin: 0 0 3px;
   padding: 2px 0 3px 0;
 }
@@ -3056,14 +3037,14 @@ a.tabledrag-handle:focus .handle {
 .touch .draggable.drag a.tabledrag-handle .handle {
   background-position: 50% -32px;
 }
-div.js-indentation {
+.indentation {
   float: left; /* LTR */
   height: 1.7em;
   margin: -0.4em 0.2em -0.4em -0.4em; /* LTR */
   padding: 0.42em 0 0.42em 0.6em; /* LTR */
   width: 20px;
 }
-[dir="rtl"] div.js-indentation {
+[dir="rtl"] .indentation {
   float: right;
   margin: -0.4em -0.4em -0.4em 0.2em;
   padding: 0.42em 0.6em 0.42em 0;
@@ -4543,9 +4524,6 @@ body.toolbar-tray-open.toolbar-fixed.toolbar-vertical .toolbar-oriented {
   display: none;
   z-index: 501;
 }
-.toolar .toolbar-tray > .toolbar-lining {
-  position: relative;
-}
 .toolbar-oriented .toolbar-tray-vertical {
   left: -100%; /* LTR */
   position: absolute;
@@ -5304,11 +5282,6 @@ th.update-project-name {
 .views-align-center {
   text-align: center;
 }
-
-.view .progress-disabled {
-  float: none;
-}
-
 /* Grid style column align. */
 .views-view-grid .views-col {
   float: left;
@@ -5605,18 +5578,6 @@ th.update-project-name {
 div.form-item-options-value-all {
   display: none;
 }
-/* @end */
-
-/* @group Drupal overrides */
-
-/* The .progress-disabled class added to the form on submit floats the element
- * left and causes the form width to shrink-wrap to the content. Setting the
- * width to 100% prevents this.
- */
-#views-ajax-body form {
-  width: 100%;
-}
-
 /* @end */
 
 /* @group Javascript dependent styling */
@@ -5946,19 +5907,6 @@ th.views-ui-operations {
 /* @end */
 
 /* @group Add view */
-
-/**
- * Drupal core forces AJAX triggering elements to float left when they are
- * disabled due to AJAX processing. On the add view page, we have inline
- * containers where we don't want that behavior; it causes the select dropdown
- * which is triggered to jump to the left while the AJAX throbber is active.
- *
- * See also http://drupal.org/node/769936 (Drupal core issue); when that is
- * fixed it may no longer be necessary to do this.
- */
-.views-admin .container-inline .progress-disabled {
-  float: none;
-}
 
 /**
  * I wish this didn't have to be so specific
@@ -7037,6 +6985,8 @@ body {
 /*
 Link
 
+A reuseable link class is provided that can style any element as a link.
+
 Markup: <a>Link</a>
 <button class="link">Button styled as link</button>
 
@@ -7083,23 +7033,28 @@ summary,
   text-transform: uppercase;
 }
 
-/*
-Headers
+/**
+  Headings
 
-Markup: <h1>Header 1</h1>
-<h2>Header 2</h2>
-<h3>Header 3</h3>
-<h4>Header 4</h4>
-<h5>Header 5</h5>
-<h6>Header 6</h6>
+  Reusable heading classes are included to help modules control the styling of
+  elements on a page without affecting accessibility.
+
+  Markup: <h1>Heading 1</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+  <h4>Heading 4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6</h6>
+  <h2 class="heading-c">A heading 2 styled as a heading 3</h2>
 
 Styleguide 1.1.4
-*/
+ */
 h1,
 .heading-a {
   font-weight: bold;
-  margin: 10px 0;
-  font-size: 1.538em;
+  margin: 0;
+  font-size: 1.625em;
+  line-height: 1.875em;
 }
 h2,
 .heading-b {
@@ -7135,7 +7090,13 @@ h6,
 /*
 Paragraph
 
-Markup: <p>Williamsburg direct trade hoodie lo-fi. Organic food truck american apparel hoodie hashtag fingerstache viral, fashion axe ethnic bespoke 8-bit irony helvetica flexitarian master cleanse.</p>
+Markup: <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis
+natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+Nullam id dolor id nibh ultricies vehicula.</p>
+<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis,
+est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec
+elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
 
 Styleguide 1.1.5
 */
@@ -7556,27 +7517,6 @@ ul.admin-list {
 }
 
 /**
- * Admin panel.
- */
-div.admin-panel,
-div.admin-panel .body {
-  padding: 0;
-  clear: left;
-}
-div.admin-panel {
-  margin: 0 0 20px;
-  padding: 9px;
-  background: #f8f8f8;
-  border: 1px solid #ccc;
-}
-div.admin-panel h3 {
-  font-size: 0.923em;
-  text-transform: uppercase;
-  margin: 0;
-  padding-bottom: 9px;
-}
-
-/**
  * Recent content block.
  */
 #block-node-recent table,
@@ -7615,6 +7555,10 @@ div.admin-panel h3 {
  * 1. Enable z-index on buttons.
  * 2. Normalize 'line-height'; can’t be changed from 'normal' in Firefox 4+.
  * 3. Allows full range of styling in Webkit and Gecko.
+ * 4. Use px units to ensure button text is centered vertically.
+ * 5. Use rems to avoid the font size cascade of ems, with a px fallback for
+ *    older browsers.
+ * 6. Prevent fat text in WebKit.
  *
  * @todo Consider moving box-sizing into base.css under a universal selector.
  * See https://drupal.org/node/2124251
@@ -7628,54 +7572,22 @@ div.admin-panel h3 {
   line-height: normal;  /* 2 */
   cursor: pointer;
   -webkit-appearance: none;  /* 3 */
-     -moz-appearance: none;  /* " */
-}
-
-/* Prevent focus ring being covered by next siblings. */
-.button:focus {
-  z-index: 10;
-}
-
-/* Link actions. */
-.link {
-  display: inline;
-  cursor: pointer;
-  padding: 0;
-  border: 0;
-  background: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-}
-
-/**
- * @file
- * Stylistic treatment for Seven’s UI buttons
- */
-
-/* Buttons. */
-
-/**
- * 1. Use px units to ensure button text is centered vertically.
- * 2. Use rems to avoid the font size cascade of ems, with a px fallback for
- * older browsers.
- * 3. Prevent fat text in WebKit.
- */
-.button {
-  padding: 4px 1.5em;  /* 1 */
+  -moz-appearance: none;  /* 3 */
+  padding: 4px 1.5em;  /* 4 */
   border: 1px solid #a6a6a6;
   border-radius: 20em;
   background-color: #f2f1eb;
   background-image: -webkit-linear-gradient(top, #f6f6f3, #e7e7df);
   background-image:   linear-gradient(to bottom, #f6f6f3, #e7e7df);
-  color: #333333;
+  color: #333;
   text-decoration: none;
   text-shadow: 0 1px hsla(0, 0%, 100%, 0.6);
   font-weight: 600;
   font-size: 14px;
-  font-size: 0.875rem;  /* 2 */
+  font-size: 0.875rem;  /* 5 */
   -webkit-transition: all 0.1s;
-          transition: all 0.1s;
-  -webkit-font-smoothing: antialiased;  /* 3 */
+  transition: all 0.1s;
+  -webkit-font-smoothing: antialiased;  /* 6 */
 }
 .button:hover,
 .button:focus {
@@ -7689,7 +7601,10 @@ div.admin-panel h3 {
 .button:hover {
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.125);
 }
+
+/* Prevent focus ring being covered by next siblings. */
 .button:focus {
+  z-index: 10;
   border: 1px solid #3AB2FF;
   box-shadow: 0 0 0.5em 0.1em hsla(203, 100%, 60%, 0.7);
 }
@@ -7700,7 +7615,7 @@ div.admin-panel h3 {
   background-image:   linear-gradient(to bottom, #f6f6f3, #e7e7df);
   box-shadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.2);
   -webkit-transition: none;
-          transition: none;
+  transition: none;
 }
 
 .button--primary {
@@ -7775,6 +7690,13 @@ div.admin-panel h3 {
  * the <a> tag, plus a reset for padding, borders and background.
  */
 .link {
+  display: inline;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   color: #0074bd;
   text-decoration: none;
 }
@@ -7799,7 +7721,7 @@ div.admin-panel h3 {
   box-shadow: none;
   background: none;
   -webkit-appearance: none;
-     -moz-appearance: none;
+  -moz-appearance: none;
   color: #c72100;
   font-weight: 400;
   text-decoration: underline;
@@ -7817,10 +7739,10 @@ div.admin-panel h3 {
 }
 .button--danger:disabled,
 .button--danger.is-disabled {
- color: #737373;
- cursor: default;
- text-decoration: none;
- -webkit-font-smoothing: antialiased;
+  color: #737373;
+  cursor: default;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
   padding: 0;
   border: 0;
   box-shadow: none;
@@ -8106,7 +8028,7 @@ div.admin-panel h3 {
 
 /**
  * Rare instances when a dropbutton is actually just a button.
- * Copied from Seven's buttons.theme.css.
+ * Copied from Seven's buttons.css.
  */
 .dropbutton-single .dropbutton-widget {
   border: 0;
@@ -8125,7 +8047,7 @@ div.admin-panel h3 {
   text-shadow: 0 1px hsla(0, 0%, 100%, 0.6);
   font-weight: 600;
   -webkit-transition: all 0.1s;
-          transition: all 0.1s;
+  transition: all 0.1s;
   -webkit-font-smoothing: antialiased;
   width: auto!important;
 }
@@ -8148,7 +8070,7 @@ div.admin-panel h3 {
   background-image: linear-gradient(to bottom, #f6f6f3, #e7e7df);
   box-shadow: inset 0 1px 3px hsla(0, 0%, 0%, 0.2);
   -webkit-transition: none;
-          transition: none;
+  transition: none;
 }
 
 /**
@@ -8778,15 +8700,11 @@ ul.inline li {
 }
 
 /**
+ * @file
  * Page title.
  */
-.content-header .page-title {
-  color: #333;
+.page-title {
   display: inline-block;
-  margin: 0;
-  font-size: 1.625em;
-  line-height: 1.875em;
-  font-weight: 600;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -8831,6 +8749,24 @@ ul.inline li {
 .pager__item--previous a {
   border-bottom-width: 0;
   color: #2a678c;
+}
+
+/**
+ * @file
+ * Panel styling. Panels are used to visually group items together.
+ */
+
+.panel {
+  margin: 0 0 20px;
+  padding: 9px;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+}
+.panel__title {
+  font-size: 0.923em;
+  text-transform: uppercase;
+  margin: 0;
+  padding-bottom: 9px;
 }
 
 /**
@@ -8898,45 +8834,28 @@ ul.inline li {
 }
 
 /**
- * Skip link.
+ * @file
+ * Skip link
+ *
+ * Allows keyboard users to quickly skip to the main content of the page.
  */
+
 .skip-link {
-  margin-top: 0;
-  position: absolute;
-  left: 50%; /* LTR */
-  margin-left: -5.25em; /* LTR */
-  width: auto;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   z-index: 50;
-}
-[dir="rtl"] .skip-link {
-  right: 50%;
-  margin-right: -5.25em;
-}
-.skip-link,
-.skip-link:link,
-.skip-link:visited {
-  display: inline-block;
   background: #444;
   color: #fff;
   font-size: 0.94em;
-  padding: 1px 10px 2px 10px; /* LTR */
-  text-decoration: none;
+  padding: 1px 10px 2px;
   border-radius: 0 0 10px 10px;
 }
-[dir="rtl"] .skip-link,
-[dir="rtl"] .skip-link:link,
-[dir="rtl"] .skip-link:visited {
-  padding: 1px 10px 2px 10px;
+.skip-link:focus {
+  text-decoration: none;
 }
-.skip-link:hover,
-.skip-link:focus,
-.skip-link:active {
-  outline: 0;
-}
-.skip-link.visually-hidden.focusable:hover,
-.skip-link.visually-hidden.focusable:focus,
-.skip-link.visually-hidden.focusable:active
-{
+.skip-link.visually-hidden.focusable:focus {
   position: absolute !important;
 }
 
