@@ -24,6 +24,8 @@
     "gulp-livereload": "^3.7.0",
     "gulp-newer": "^0.5.0",
     "gulp-phantomcss": "0.0.4",
+    "jsonfile": "^2.2.1",
+    "lodash.clone": "^3.0.2",
     "slug": "^0.9.1",
     "yargs": "^3.7.2"
   }
