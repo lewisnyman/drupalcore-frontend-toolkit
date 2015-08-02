@@ -5,6 +5,10 @@ var livereload = require('gulp-livereload');
 var deploy = require('gulp-gh-pages');
 var gulpkss = require('gulp-kss');
 var gulpconcat = require('gulp-concat');
+var phantomcss = require('gulp-phantomcss');
+var argv = require('yargs').argv;
+var jsonfile = require('jsonfile');
+var clone = require('lodash.clone');
 
 // Config
 var cssfiles = ['../core/modules/**/*.css', '../core/themes/**/*.css', '/../core/misc/**/*.css'];
@@ -24,6 +28,47 @@ gulp.task('watch', function() {
 gulp.task('reloadcss', function(vinyl) {
   gulp.src(cssfiles)
     .pipe(livereload());
+});
+
+gulp.task('phantomcss', function () {
+  var config,
+      configfile,
+      debug;
+
+  configfile = typeof(argv.configfile) !== 'undefined' ? argv.configfile : false;
+  if (configfile) {
+    config = jsonfile.readFileSync(configfile);
+  } else {
+    config.tests = [{
+      'page': typeof argv.page !== 'undefined' ? argv.page : '/',
+      'selector': typeof argv.selector !== 'undefined' ? argv.selector : 'body'
+    }];
+  }
+
+  config.url = 'http://' + (typeof argv.url !== 'undefined' ? argv.url : 'drupal8.dev');
+  if (config.url.substr(-1) == '/') {
+    config.url = config.url.substr(0, url.length - 1);
+  }
+
+  config.user = typeof argv.user !== 'undefined' ? argv.user : 'admin';
+  config.password = typeof argv.password !== 'undefined' ? argv.password : 'admin';
+
+  debug = typeof(argv.debug) !== 'undefined' ? 'debug' : 'error';
+
+  config.tests.forEach(function (test) {
+    var testConfig = clone(config);
+    delete testConfig.tests;
+    testConfig.page = test.page;
+    testConfig.selector = test.selector;
+
+    gulp.src('./phantomcss/testSinglePage.js')
+      .pipe(phantomcss({
+        screenshots: './phantomcss/references',
+        failures: './phantomcss/failures',
+        logLevel: debug,
+        drupalTestConfig: testConfig
+      }));
+  });
 });
 
 gulp.task('styleguide', function(vinyl) {
