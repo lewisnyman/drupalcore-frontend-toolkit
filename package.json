@@ -15,6 +15,7 @@
     "styleguide": "gulp styleguide"
   },
   "devDependencies": {
+    "backstopjs": "git://github.com/axe312ger/BackstopJS",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.5.2",
     "gulp-csslint": "^0.1.5",
@@ -23,7 +24,6 @@
     "gulp-kss": "0.0.2",
     "gulp-livereload": "^3.7.0",
     "gulp-newer": "^0.5.0",
-    "gulp-phantomcss": "0.0.4",
     "jsonfile": "^2.2.1",
     "lodash.clone": "^3.0.2",
     "slug": "^0.9.1",
